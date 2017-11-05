@@ -1,0 +1,40 @@
+ show databases;
+ use tecomp;
+Database changed
+ show tables;
+ show databases;
+ use tecomp;
+ select * from employee;
+ insert into employee values(4,'Naziya','2006-01-01','Mumbai','Transport','Supervisor');
+ select * from salary
+ insert into salary values(4,9000,9500,3600,45123699);
+ select * from msalary;
+ insert into msalary values(1,'JAN',30,13500),(1,'FEB',28,13500),(1,'MAR',31,13500);
+ select * from msalary;
+ select * from employee where addr='Nashik';
+select distinct(addr) from employee;
+ select distinct(addr) from employee order by addr desc;
+select * from employee where addr='Nashik' or job='Supervisor';
+ select * from employee where addr='Nashik' and job='Manager';
+ select * from employee where dob between '2000-01-01' and '2000-12-31';
+ select * from employee where addr in('Mumbai','Pune');
+select * from employee where addr in('Mumbai','Jalgaon');
+select max(basic),min(basic) from salary;
+ select avg(dsalary),sum(dsalary) from msalary where smonth='JAN';
+ select * from employee where addr='Nashik'
+    -> union
+    -> select * from employee where job='Supervisor';
+ select empid from salary where basic>=8000;
+
+ update employee set addr='Pune' where addr='Jalgaon';
+select * from employee;
+
+
+ select * from salary;
+
+ delete from salary where empid=4;
+
+ select * from salary;
+
+
+

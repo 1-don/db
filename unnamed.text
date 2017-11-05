@@ -1,0 +1,29 @@
+declare
+r number(5):=&roll_no;
+nb varchar(30):=&name_of_book;
+di date;
+fine number(10);
+ndays number(10);
+begin
+select doi into di from borrower where roll_no=r and nameofbook=nb;
+select (current_date-di) into ndays from dual;
+dbms_output.put_line('no of days='||to_char(ndays));
+if(ndays>15 and ndays<=30) then
+	fine:=(ndays-15)*5;
+end if;
+if ndays>30 then
+	fine:=15*5+(ndays-30)*50;
+end if;
+update borrower set status='R' where roll_no=r;
+if(fine>0) then
+	insert into fine values(r,current_date,fine);
+end if;
+commit;
+dbms_output.put_line('Book received total fine='||to_char(fine));
+exception
+when no_data_found then
+	dbms_output.put_line('Record not found plz check details');
+end;
+/
+
+

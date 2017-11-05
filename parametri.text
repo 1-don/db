@@ -1,0 +1,26 @@
+delete from n_rollcall;
+declare
+cursor cur1 is
+select roll_no,name,addr from o_rollcall;
+r number (3);
+rno  number(3);
+nm varchar2(20);
+adr varchar2(20);
+cursor cur2(roll number) is
+select roll_no from n_rollcall where roll_no=roll;
+begin 
+open cur1;
+loop
+fetch cur1 into rno,nm,adr;
+exit when cur1%found=false;
+open cur2(rno);
+fetch cur2 into r;
+if cur2%found=false then
+dbms_output.put_line('Record of '||' '||rno);
+insert into n_rollcall values(rno,nm,adr);
+close cur2;
+end if;
+end loop;
+close cur1;
+end;
+/

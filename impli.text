@@ -1,0 +1,31 @@
+set serveroutput on;
+DECLARE  
+   mroll number;
+   i number;
+   r number;
+   g number;
+   rw o_rollcall%rowtype;
+BEGIN 
+   dbms_output.put_line('Point1');
+   select max(roll_no) into mroll from o_rollcall; 
+   dbms_output.put_line('max'||mroll);
+   i:=11;
+   WHILE i <= mroll
+   LOOP
+   r:=0;
+   --select * into r from n_rollcall where roll_no=i;
+   FOR g IN (SELECT roll_no FROM n_rollcall where roll_no=i)
+  LOOP
+	dbms_output.put_line('Record of '||g.roll_no||' Already exist');
+ r:=1;
+  END LOOP;
+   IF r=0 THEN
+     select * INTO rw from o_rollcall where roll_no=i; 
+	insert into n_rollcall values(rw.roll_no,rw.name,rw.addr);
+     
+   END IF;
+	i:=i+1;
+   END LOOP; 
+   dbms_output.put_line( i-1||'row inserted');
+END; 
+/ 

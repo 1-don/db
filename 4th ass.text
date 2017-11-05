@@ -1,0 +1,62 @@
+
+use tecomp
+ select * from employee;
+select * from salary;
+ select * from msalary;
+ selct * from employee left join salary on salary.empid=employee.eid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version
+ for the right syntax to use near 'selct * from employee left join salary on salary.empid=employee.eid' at line 1
+ select * from employee left join salary on salary.empid=employee.eid;
+ select * from employee right join salary on salary.empid=employee.eid;
+ select * from employee inner join salary on salary.empid=employee.eid;
+select * from employee right join salary on salary.empid=employee.eid
+    -> union
+  select * from employee left join salary on salary.empid=employee.eid;
+ select * from employee natural left join salary on salary.empid=employee.eid;
+ for the right syntax to use near 'on salary.empid=employee.eid' at line 1
+ select * from employee natural left join salary;
+select * from employee natural join salary;
+Display salary detail of employee who work in nashik
+ select * from salary where empid in (select eid from employee where addr='Nashik');
+Display employee who’s salary is more than avg salary of employee
+select * from salary where basic>(select avg(basic) from salary);
+Write query to display the name of employee department for those employee who works same designation as employee id 3
+ select ename,dept from employee where job=(select job from employee where eid=3);
+
+
+
+ display id, name , address, basic salary of employee who get more than avg salary of company.
+ select e.eid,e.ename,e.addr,s.basic from employee as e,salary as s where s.basic>
+    -> (select avg(basic) from salary);
+Create view update vie insert into view drop view
+update v1 set basic=10000 where eid=3;
+ create or replace view v1 as select eid,ename,basic from employee left join salary on employee.eid=salary.empid
+ select * from v1 where eid=2
+mysql> select * from v1;
+mysql> select * from v1;
+mysql> select * from salary;
+ select * from v1;
+create or replace view v1 as select eid,ename from employee;
+ select * from v1;
+insert into v1 values(5,'Waiz');
+ select * from v1;
+ select * from employee;
+ delete from v1 where eid=5;
+ select * from v1;
+mysql> select * from employee;
+mysql> create or replace view v1 as select eid,ename from employee;
+mysql> select * from v1;
+mysql> insert into v1 values(5,'Waiz');
+mysql> select * from v1;
+mysql> select * from employee;
+delete from v1 where eid=5;
+
+
+ select * from v1;
+select * from employee;
+show full tables in tecomp where table_type like 'view';
+ drop view v1;
+show full tables in tecomp where table_type like 'view';
+
+ 
+

@@ -1,0 +1,6 @@
+create table borrower(roll_no number(5),sname varchar(30),doi date,nameofbook varchar(50),status varchar(2));
+create table fine(roll_no number(5),dos date,amt number(10));
+insert into borrower values(1,'Kunal','01-apr-2017','dbms','I');
+insert into borrower values(2,'Vishal','10-jun-2017','se','I');
+insert into borrower values(3,'nikhil','11-jul-2017','oop','I');
+commit;

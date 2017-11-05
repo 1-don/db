@@ -1,0 +1,95 @@
+
+show databases;
+
+
+ create database tecomp;
+
+use tecomp;
+ create table employee(eid integer,ename varchar(30),dob date,addr varchar(30),dept varchar(20),job varchar(20));
+
+create table salary(empid integer,basic integer,da integer,pf integer,acno integer);
+
+ create table msalary(empid integer,smonth varchar(10),wdays integer,dsalary integer);
+
+ insert into employee values(1,'jagdish','2007-05-06','Nashik','Asembly','Worker');
+
+ insert into employee values(2,'rajesh','2000-05-06','Nashik','Asembly','Manager');
+
+ insert into employee values(3,'Kamlesh','2000-06-06','Pune','Asembly','Supervisor');
+
+
+select * from employee;
+create table clone as select * from employee;
+select * from clone;
+ create table dob1 as select eid,ename,dob from employee;
+
+select * from dob1;
+alter table employee add constraint pk primary key(eid);
+ describe employee;
+
+ alter table employee modify ename varchar(25) not null;
+describe employee;
+ create index i1 on employee(ename);
+ show index from employee;
+
+
+ drop index i1 on employee;
+
+show index from employee;
+
+ alter table employee add test varchar(10);
+
+ describe employee;
+
+alter table employee modify test integer;
+
+describe employee;
+
+ alter table employee drop test;
+
+mysql> describe employee;
+
+
+ alter table salary add foreign key fk (empid) references employee(eid);
+
+
+describe salary;
+
+ alter table msalary add foreign key fk1 (empid) references employee(eid);
+
+
+ drop table clone;
+
+ show tables;
+
+drop table dob1;
+
+
+show tables;
+
+
+ select * from employee;
+
+ create view v1 as select * from employee;
+
+
+select * from v1;
+
+create view dobv as select eid,ename,dob from employee;
+
+
+ select * from dobv;
+
+
+ update v1 set addr='Nashik' where addr='Pune';
+
+
+ select * from employee;
+
+select * from v1;
+
+ drop view v1;
+Query OK, 0 rows affected (0.00 sec)
+
+
+ 
